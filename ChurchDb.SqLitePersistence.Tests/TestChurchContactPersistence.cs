@@ -12,7 +12,7 @@ namespace ChurchDb.SqLitePersistence.Tests
         [TestMethod]
         public void TestSave()
         {
-            var persistence = new SqliteChurchContactPersistence();
+            var persistence = new SqliteChurchContactPersistence(()=>DateTime.Now);
             var dbfilename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
                 "test.db");
             if(File.Exists(dbfilename)) File.Delete(dbfilename);

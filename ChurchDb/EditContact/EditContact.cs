@@ -29,6 +29,7 @@ namespace ChurchDb
 
         public event EventHandler? SaveRequested;
         public event EventHandler? CancelRequested;
+        public event EventHandler? SaveAndCloseRequested;
         public ITextInput IDInput => IDTextInput;
         public ITextInput LastNameInput => LastNameTextInput;
 
@@ -39,7 +40,7 @@ namespace ChurchDb
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            SaveRequested?.Invoke(this, EventArgs.Empty);
+            SaveAndCloseRequested?.Invoke(this, EventArgs.Empty);
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -65,5 +66,10 @@ namespace ChurchDb
 
         public static EditContact Edit(EditContactPresenter presenter, ChurchContact contact) =>
             new EditContact(presenter, EditContactState.EDIT, contact);
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            SaveRequested?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

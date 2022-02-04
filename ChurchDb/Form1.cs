@@ -17,13 +17,14 @@ namespace ChurchDb
             var addform = EditContact.CreateNew(new EditContactPresenter(_persistence));
             addform.ShowDialog();
             RefreshListView();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            var persistence = new SqliteChurchContactPersistence();
-            var dbfilename = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            var persistence = new SqliteChurchContactPersistence(()=>DateTime.Now);
+            var dbfilename = Path.Combine(
+                Environment.GetFolderPath(
+                    Environment.SpecialFolder.ApplicationData),
                 "churchcontacts.db");
             persistence.Init(dbfilename);
             _persistence = persistence;
@@ -32,26 +33,31 @@ namespace ChurchDb
 
         private void RefreshListView()
         {
-            ContactsListView.Items.Clear();
-            var contacts = _persistence.GetAll();
-            foreach (var contact in contacts)
+            var contacts = _persistence.GetAll().Select(c => new ChurchContact
             {
-                string[] row = new[] {contact.ID, contact.LastName};
-                ListViewItem item = new ListViewItem(row);
-                item.Tag = contact;
-                ContactsListView.Items.Add(item);
-            }
+                ID = c.ID,
+                LastName = c.LastName,
+                CreatedOn = c.CreatedOn.ToLocalTime(),
+                UpdatedOn = c.UpdatedOn.ToLocalTime()
+            }).ToArray();
+
+            ContactsDataGrid.DataSource = contacts;
         }
 
-        private void ContactsListView_MouseClick(object sender, MouseEventArgs e)
+        private void ContactsDataGrid_DoubleClick(object sender, EventArgs e)
         {
-            if (this.ContactsListView.SelectedItems.Count > 0)
+            if (this.ContactsDataGrid.SelectedRows.Count > 0)
             {
-                var addform = EditContact.Edit(new EditContactPresenter(_persistence), (ChurchContact)this.ContactsListView.SelectedItems[0].Tag);
+                var addform = EditContact.Edit(new EditContactPresenter(_persistence), (ChurchContact)ContactsDataGrid.SelectedRows[0].DataBoundItem);
                 addform.ShowDialog();
                 RefreshListView();
             }
-
         }
+    }
+
+    internal static class DataHelpers
+    {
+        public static string ToLocalTimeString(this DateTime value) =>
+            value.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss.sss");
     }
 }

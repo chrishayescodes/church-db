@@ -34,6 +34,13 @@ public class EditContactPresenter
             _stateMachine = _states[EditContactState.EDIT];
         };
 
+        _form.SaveAndCloseRequested += (sender, args) =>
+        {
+            Save(new ChurchContact { LastName = _form.LastNameInput.Text, ID = _form.IDInput.Text });
+            _stateMachine = _states[EditContactState.EDIT];
+            _form.CloseForm();
+        };
+
         _form.CancelRequested += (sender, args) =>
         {
             _form.CloseForm();

@@ -32,11 +32,12 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.IDTextInput = new ChurchDb.Controls.TextInput();
             this.LastNameTextInput = new ChurchDb.Controls.TextInput();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // OKButton
             // 
-            this.OKButton.Location = new System.Drawing.Point(291, 340);
+            this.OKButton.Location = new System.Drawing.Point(67, 340);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(150, 46);
             this.OKButton.TabIndex = 4;
@@ -46,7 +47,7 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(531, 340);
+            this.CancelButton.Location = new System.Drawing.Point(677, 340);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(150, 46);
             this.CancelButton.TabIndex = 5;
@@ -68,11 +69,22 @@
             this.LastNameTextInput.Size = new System.Drawing.Size(790, 53);
             this.LastNameTextInput.TabIndex = 7;
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(366, 340);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(150, 46);
+            this.SaveButton.TabIndex = 8;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 418);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.LastNameTextInput);
             this.Controls.Add(this.IDTextInput);
             this.Controls.Add(this.CancelButton);
@@ -89,5 +101,6 @@
         private Button CancelButton;
         private Controls.TextInput IDTextInput;
         private Controls.TextInput LastNameTextInput;
+        private Button SaveButton;
     }
 }

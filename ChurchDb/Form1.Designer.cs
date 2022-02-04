@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.AddContactButton = new System.Windows.Forms.Button();
-            this.ContactsListView = new System.Windows.Forms.ListView();
-            this.chID = new System.Windows.Forms.ColumnHeader();
-            this.chLast = new System.Windows.Forms.ColumnHeader();
+            this.ContactsDataGrid = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.ContactsDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // AddContactButton
             // 
-            this.AddContactButton.Location = new System.Drawing.Point(189, 195);
+            this.AddContactButton.Location = new System.Drawing.Point(45, 26);
             this.AddContactButton.Name = "AddContactButton";
             this.AddContactButton.Size = new System.Drawing.Size(234, 46);
             this.AddContactButton.TabIndex = 0;
@@ -44,39 +43,28 @@
             this.AddContactButton.UseVisualStyleBackColor = true;
             this.AddContactButton.Click += new System.EventHandler(this.AddContactButton_Click);
             // 
-            // ContactsListView
+            // ContactsDataGrid
             // 
-            this.ContactsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chID,
-            this.chLast});
-            this.ContactsListView.Location = new System.Drawing.Point(189, 331);
-            this.ContactsListView.Name = "ContactsListView";
-            this.ContactsListView.Size = new System.Drawing.Size(1077, 529);
-            this.ContactsListView.TabIndex = 1;
-            this.ContactsListView.UseCompatibleStateImageBehavior = false;
-            this.ContactsListView.View = System.Windows.Forms.View.Details;
-            this.ContactsListView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ContactsListView_MouseClick);
-            // 
-            // chID
-            // 
-            this.chID.Text = "ID";
-            this.chID.Width = 150;
-            // 
-            // chLast
-            // 
-            this.chLast.Text = "Last Name";
-            this.chLast.Width = 300;
+            this.ContactsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ContactsDataGrid.Location = new System.Drawing.Point(45, 134);
+            this.ContactsDataGrid.Name = "ContactsDataGrid";
+            this.ContactsDataGrid.RowHeadersWidth = 82;
+            this.ContactsDataGrid.RowTemplate.Height = 41;
+            this.ContactsDataGrid.Size = new System.Drawing.Size(1077, 793);
+            this.ContactsDataGrid.TabIndex = 2;
+            this.ContactsDataGrid.DoubleClick += new System.EventHandler(this.ContactsDataGrid_DoubleClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1405, 969);
-            this.Controls.Add(this.ContactsListView);
+            this.ClientSize = new System.Drawing.Size(1169, 969);
+            this.Controls.Add(this.ContactsDataGrid);
             this.Controls.Add(this.AddContactButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ContactsDataGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,8 +72,6 @@
         #endregion
 
         private Button AddContactButton;
-        private ListView ContactsListView;
-        private ColumnHeader chID;
-        private ColumnHeader chLast;
+        private DataGridView ContactsDataGrid;
     }
 }
